@@ -28,12 +28,10 @@ namespace MoveAPI
             var secret = "Move Test Super Secret Key";
             var connectionString = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<MoveContext>(options => options
-                // .UseLazyLoadingProxies()
                 .UseSqlServer(connectionString, b => b.MigrationsAssembly("MoveAPI"))
             );
 
             var moveContext = services.BuildServiceProvider().GetService<MoveContext>();
-            services.AddSingleton<IJwtAuthenticationManager>(new JwtAuthenticationManager(secret, moveContext));
 
             services.AddControllers()
                 .AddJsonOptions(x =>
