@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using DbMove.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace MoveAPI.Controllers
+namespace API.Controllers
 {
     [Route("[controller]")]
     [ApiController]

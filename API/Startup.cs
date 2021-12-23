@@ -11,7 +11,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using System.Text.Json.Serialization;
 
-namespace MoveAPI
+namespace API
 {
     public class Startup
     {
@@ -28,7 +28,7 @@ namespace MoveAPI
             var secret = "Move Test Super Secret Key";
             var connectionString = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<MoveContext>(options => options
-                .UseSqlServer(connectionString, b => b.MigrationsAssembly("MoveAPI"))
+                .UseSqlServer(connectionString, b => b.MigrationsAssembly("API"))
             );
 
             var moveContext = services.BuildServiceProvider().GetService<MoveContext>();
@@ -57,7 +57,7 @@ namespace MoveAPI
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "MoveAPI", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "API", Version = "v1" });
             });
         }
 
@@ -68,7 +68,7 @@ namespace MoveAPI
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "MoveAPI v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "API v1"));
             }
 
             app.UseHttpsRedirection();
